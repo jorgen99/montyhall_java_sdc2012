@@ -5,8 +5,11 @@ import views.html.game;
 import views.html.index;
 
 import play.data.Form;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+import org.codehaus.jackson.node.ObjectNode;
 
 public class Application extends Controller {
 
@@ -27,7 +30,20 @@ public class Application extends Controller {
     }
 
     public static Result game(Long id) {
-        return ok(game.render(Game.find.byId(id)));
+        Game currentGame = Game.find.byId(id);
+        if(currentGame != null) {
+            return ok(game.render(currentGame));
+        }
+        return redirect(routes.Application.index());
+    }
+
+    public static Result selectDoor(Long id, int doorNo) {
+        Game currentGame = Game.find.byId(id);
+        currentGame.selectedDoor = doorNo;
+        currentGame.save();
+        ObjectNode result = Json.newObject();
+        result.put("goatDoor", currentGame.goatDoor());
+        return ok(result);
     }
 
 }
