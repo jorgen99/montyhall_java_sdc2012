@@ -1,16 +1,16 @@
-@(message: String)
+@(gameForm: Form[Game])
+@import helper._
+
 
 @main("Play Monty Hall!") {
 
 <div class="main-content start">
-
     <div class="register">
-
-    @helper.form(action = routes.Application.storeName()) {
+    @form(action = routes.Application.newGame()) {
 
     <ul class="form">
         <li>
-          <input type="text" name="playerName" placeholder="Player name" value="@flash.get("playerName")">
+            @inputText(gameForm("playerName"), 'placeholder -> "Player name", '_label -> null)
         </li>
         <li>
             <input class="button gray" type="submit" value="Play!">
@@ -23,5 +23,5 @@
 }
 
     </div>
-</div>    
+</div>
 }

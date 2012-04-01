@@ -1,3 +1,12 @@
+/*
+    This file was generated using sass with compass in another
+    project. I should clean it up to only include stuff I use
+    in this little Monty-app but I don't "orka".
+    http://www.thelocal.se/gallery/2332/
+
+    After all this little app is about learning Play! and
+    not css, right... :)
+*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -348,36 +357,7 @@ header .logo a:hover {
   padding: 37px 37px;
   margin-top: 60px;
 }
-.button.blue {
-  color: white;
-  border: 1px solid #4a95c9;
-  background-image: url("../images/icon-follow-white-18.png"), -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5aaae1), color-stop(100%, #3f86b7));
-  background-image: url("../images/icon-follow-white-18.png"), -webkit-linear-gradient(#5aaae1, #3f86b7);
-  background-image: url("../images/icon-follow-white-18.png"), -moz-linear-gradient(#5aaae1, #3f86b7);
-  background-image: url("../images/icon-follow-white-18.png"), -o-linear-gradient(#5aaae1, #3f86b7);
-  background-image: url("../images/icon-follow-white-18.png"), -ms-linear-gradient(#5aaae1, #3f86b7);
-  background-image: url("../images/icon-follow-white-18.png"), linear-gradient(#5aaae1, #3f86b7);
-}
-.button.blue.follow {
-  background-repeat: no-repeat;
-  padding-left: 42px;
-  background-position: 9px center, center center;
-}
-.button.green {
-  color: white;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-  border: 1px solid #6ebe55;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #79d05d), color-stop(100%, #6ab752));
-  background-image: -webkit-linear-gradient(#79d05d, #6ab752);
-  background-image: -moz-linear-gradient(#79d05d, #6ab752);
-  background-image: -o-linear-gradient(#79d05d, #6ab752);
-  background-image: -ms-linear-gradient(#79d05d, #6ab752);
-  background-image: linear-gradient(#79d05d, #6ab752);
-}
-.button.green.action {
-  font-size: 20px;
-  padding: 8px 16px 7px;
-}
+
 
 .register {
   width: 400px;
