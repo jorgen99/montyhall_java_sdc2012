@@ -1,5 +1,6 @@
 package models;
 
+import play.Logger;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
@@ -13,12 +14,36 @@ public class Game extends Model {
     public Long id;
 
     public String playerName;
-    public Integer selectedDoor;
-
-    public Integer goatDoor() {
-        return 3;
-    }
+    public Integer initialPlayerDoor;
+    public final Integer carDoor = randomDoor();
+    public boolean switched;
+    public boolean won;
+    public boolean gameOver;
 
     public static Finder<Long, Game> find = new Finder<Long, Game>(Long.class, Game.class);
+
+    public Integer goatDoor() {
+        while(true) {
+            int possibleGoat = randomDoor();
+            if(possibleGoat != carDoor && possibleGoat != initialPlayerDoor) {
+                return possibleGoat;
+            }
+        }
+    }
+
+    public void stayOrSwitch(int doorNo) {
+        if(doorNo != initialPlayerDoor) {
+            switched = true;
+        }
+        if(doorNo == carDoor) {
+            won = true;
+        }
+        gameOver = true;
+    }
+
+
+    private int randomDoor() {
+        return new Random().nextInt(3) + 1;
+    }
 
 }
