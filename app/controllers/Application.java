@@ -24,25 +24,49 @@ public class Application extends Controller {
             return badRequest(index.render(gameForm));
         }
         Game newGame = gameForm.get();
-        newGame.save();
-        return redirect(routes.Application.game(newGame.id));
+        return redirectToGame(newGame);
+    }
+
+    public static Result newGameFor(String playerName) {
+        Game newGame = new Game();
+        newGame.playerName = playerName;
+        return redirectToGame(newGame);
     }
 
     public static Result game(Long id) {
         Game currentGame = Game.find.byId(id);
-        if(currentGame != null) {
-            return ok(game.render(currentGame));
+        if(currentGame == null) {
+            return redirect(routes.Application.index());
         }
-        return redirect(routes.Application.index());
+        if(currentGame.gameOver) {
+            return redirect(routes.Application.newGameFor(currentGame.playerName));
+        }
+        return ok(game.render(currentGame));
     }
 
     public static Result selectDoor(Long id, int doorNo) {
         Game currentGame = Game.find.byId(id);
-        currentGame.selectedDoor = doorNo;
+        currentGame.initialPlayerDoor = doorNo;
         currentGame.save();
         ObjectNode result = Json.newObject();
         result.put("goatDoor", currentGame.goatDoor());
         return ok(result);
+    }
+
+    public static Result stayOrSwitch(Long id, int doorNo) {
+        Game currentGame = Game.find.byId(id);
+        currentGame.stayOrSwitch(doorNo);
+        currentGame.save();
+        ObjectNode result = Json.newObject();
+        result.put("carDoor", currentGame.carDoor);
+        result.put("won", currentGame.won);
+        return ok(result);
+    }
+
+    private static Result redirectToGame(Game newGame) {
+        newGame.save();
+        flash("success", "Game " + newGame.playerName + " has been created");
+        return redirect(routes.Application.game(newGame.id));
     }
 
 }

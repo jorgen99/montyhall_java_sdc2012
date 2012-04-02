@@ -6,7 +6,11 @@
 create table game (
   id                        bigint not null,
   player_name               varchar(255),
-  selected_door             integer,
+  initial_player_door       integer,
+  car_door                  integer,
+  switched                  boolean,
+  won                       boolean,
+  game_over                 boolean,
   constraint pk_game primary key (id))
 ;
 
