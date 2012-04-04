@@ -15,7 +15,7 @@ public class Game extends Model {
 
     public String playerName;
     public Integer initialPlayerDoor;
-    public final Integer carDoor = randomDoor();
+    public Integer carDoor = randomDoor();
     public boolean switched;
     public boolean won;
     public boolean gameOver;
