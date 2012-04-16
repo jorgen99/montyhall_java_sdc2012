@@ -22,7 +22,6 @@ public class Application extends Controller {
         }
         Game newGame = gameForm.get();
         newGame.save();
-        flash("success", "Game " + newGame.playerName + " has been created");
         return redirect(routes.Application.game(newGame.id));
     }
 
