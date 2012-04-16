@@ -3,6 +3,8 @@ package controllers;
 import models.Game;
 import views.html.game;
 import views.html.index;
+import views.html.statistics;
+import util.GamePlayer;
 
 import play.data.Form;
 import play.libs.Json;
@@ -61,6 +63,17 @@ public class Application extends Controller {
         result.put("carDoor", currentGame.carDoor);
         result.put("won", currentGame.won);
         return ok(result);
+    }
+
+    public static Result statistics(int noOfGames) {
+        GamePlayer gamePlayer = new GamePlayer();
+        for (int i = 0; i < noOfGames; i++) {
+            Game game = gamePlayer.playGameSwitchingDoor();
+            game.save();
+        }
+        int wonGames = Game.find.where().eq("won", true).findRowCount();
+        int allGames = Game.find.findRowCount();
+        return ok(statistics.render(allGames, wonGames));
     }
 
     private static Result redirectToGame(Game newGame) {

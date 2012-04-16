@@ -8,3 +8,11 @@ There are branches for each step in the development.
 * 02_choose_door
 * 03_stay_or_switch
 * 04_tests
+* 05_acceptance_test
+
+### More on the Monty Hall problem
+http://en.wikipedia.org/wiki/Monty_Hall_problem
+
+### License
+This little app is licensed under WTFPL
+http://sam.zoy.org/wtfpl/
