@@ -1,6 +1,7 @@
 package models;
 
 import play.Logger;
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ public class Game extends Model {
     @Id
     public Long id;
 
+    @Constraints.Required
     public String playerName;
     public Integer initialPlayerDoor;
     public Integer carDoor = randomDoor();
