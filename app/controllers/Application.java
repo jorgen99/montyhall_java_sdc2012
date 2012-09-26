@@ -10,6 +10,7 @@ import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.Routes;
 
 import org.codehaus.jackson.node.ObjectNode;
 
@@ -82,4 +83,11 @@ public class Application extends Controller {
         return redirect(routes.Application.game(newGame.id));
     }
 
+	public static Result javascriptRoutes() {
+		response().setContentType("text/javascript");
+		return ok(Routes.javascriptRouter("jsRoutes",
+				controllers.routes.javascript.Application.selectDoor(),
+				controllers.routes.javascript.Application.stayOrSwitch()
+		));
+	}
 }
